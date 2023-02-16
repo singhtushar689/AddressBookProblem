@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace AddressBook
 {
@@ -53,23 +54,23 @@ namespace AddressBook
                             Console.WriteLine("Enter the new address");
                             contact.Address = Console.ReadLine();
                             break;
-                            case 2:
+                        case 2:
                             Console.WriteLine("Enter the City Name");
                             contact.City = Console.ReadLine();
                             break;
-                            case 3:
+                        case 3:
                             Console.WriteLine("Enter the State ");
                             contact.State = Console.ReadLine();
                             break;
-                            case 4:
+                        case 4:
                             Console.WriteLine("Enter the E-Mail");
                             contact.Email = Console.ReadLine();
                             break;
-                            case 5:
+                        case 5:
                             Console.WriteLine("Enter the Phone Number ");
                             contact.Phone = Console.ReadLine();
                             break;
-                            case 6:
+                        case 6:
                             Console.WriteLine("Enter the Zip-Code");
                             contact.Zip = Convert.ToInt32(Console.ReadLine());
                             break;
@@ -82,6 +83,17 @@ namespace AddressBook
 
             }
         }
-
+        public void DeleteContact(string name)
+        {
+            Contact deleteContact = new Contact();
+            foreach (var contact in contactList)
+            {
+                if (contact.Name.Equals(name))
+                {
+                    deleteContact = contact;
+                }
+                contactList.Remove(contact);
+            }
+        }
     }
 }
