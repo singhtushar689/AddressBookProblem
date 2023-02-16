@@ -10,16 +10,24 @@ namespace AddressBook
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter any option given below: \n 1.CreateContact");
+            Console.WriteLine("Enter any option given below: \n 1.CreateContact \n 2.Edit Contact \n Exit");
             int option = Convert.ToInt32(Console.ReadLine());
+            AddressBook book = new AddressBook();
             switch (option)
             {
-                case 1:                 
-                    AddressBook book = new AddressBook();
+                case 1:                  
                     book.CreateContact();
                     book.Display();
                     break;
+                case 2:
+                    book.CreateContact();
+                    book.EditContact("Tushar");
+                    book.Display();
+                    break;
+                default:
+                    break;
             }
+            Console.ReadKey();
         }
     }
 }
