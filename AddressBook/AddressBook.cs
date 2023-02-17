@@ -9,11 +9,12 @@ namespace AddressBook
 {
     public class AddressBook
     {
-        Contact contact = new Contact();
+       
         List<Contact> contactList = new List<Contact>();
 
         public void CreateContact()
         {
+            Contact contact = new Contact();
             Console.WriteLine("Enter the details:");
             Console.WriteLine("Enter the First Name:");
             contact.Name = Console.ReadLine();
@@ -35,9 +36,12 @@ namespace AddressBook
         }
         public void Display()
         {
-            Console.WriteLine("Contact Detail:" + "\n 1.Name:" + contact.Name + "\n 2.LastName :" + contact.LastName +
+            foreach (var contact in contactList)
+            {
+                Console.WriteLine("Contact Detail:" + "\n 1.Name:" + contact.Name + "\n 2.LastName :" + contact.LastName +
                 "\n 3.Address:" + contact.Address + " \n 4.City :" + contact.City + "\n 5.State :" + contact.State +
                 "\n 6.Email :" + contact.Email + "\n 7.Phone:" + contact.Phone + "\n 8.Zip :" + contact.Zip);
+            }
         }
         public void EditContact(string name)
         {
@@ -83,16 +87,27 @@ namespace AddressBook
 
             }
         }
-        public void DeleteContact(string name)
+        public void DeleteContact()
         {
-            Contact deleteContact = new Contact();
+           bool deleted = false;
+            Console.WriteLine("Enter the name You want to delete");
+            string name = Console.ReadLine();
             foreach (var contact in contactList)
+
             {
                 if (contact.Name.Equals(name))
                 {
-                    deleteContact = contact;
+                    contactList.Remove(contact);
+                    break;
                 }
-                contactList.Remove(contact);
+            }
+            if (deleted)
+            {
+                Console.WriteLine("Contact deleted Succesfully");
+            }
+            else
+            {
+                Console.WriteLine("Contact Not Found");
             }
         }
     }
